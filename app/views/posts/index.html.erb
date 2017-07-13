@@ -1,0 +1,47 @@
+<h1>Recent Posts</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>About</th>
+      <th>News date</th>
+      <th>Related news</th>
+      <th>Yours thought</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+<tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.country %></td>
+        <td><%= post.dependent_person %></td>
+        <td><%= post.news_date %></td>
+        <%-# post.related_news -%>
+        <td>
+  <% if post.related_news.length > 100 %>
+    <%= truncate(post.related_news, length: 100) %>
+  <% else %>
+    <%= post.related_news%>
+  <% end %>
+</td>
+    <td>
+        <% if post.yours_thought.length > 100 %>
+        <%= truncate(post.yours_thought, length: 100) %>
+        <% else %>
+            <%= post.yours_thought%>
+         <% end %>
+    </td>
+        <td>
+        <%= link_to 'Show', post, class: 'btn btn-info' %>
+        </td>
+        </tr>
+
+       <% if false %>
+        <% if post.user == current_user %>
+        |<td><%= link_to 'Edit', edit_post_path(post), class: 'btn btn-info' %></td> |
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info'  %></td>|
+        <% end %>
+        <% end %>
+    <% end %>
+  </tbody>
+ </table>

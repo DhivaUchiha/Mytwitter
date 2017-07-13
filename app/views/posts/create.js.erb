@@ -1,0 +1,2 @@
+$("#new_post").hide();
+$("#show_post").html('<%= escape_javascript(render "show_page_posts" , posts: @posts )%>' );

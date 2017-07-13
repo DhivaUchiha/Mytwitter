@@ -1,0 +1,45 @@
+
+<%= form_with(model: post, remote: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <div class="form-group" id="mynewpost">
+  <div class= "col-sm-10"  >
+    <%= form.label :country %>
+    <%= form.text_field :country, id: :post_country %>
+  </div>
+
+  <div class="col-sm-10">
+    <%= form.label :dependent_person %>
+    <%= form.text_field :dependent_person, id: :post_dependent_person %>
+  </div>
+
+  <div class= "col-sm-50">
+    <%= form.label :related_news %>
+    <%= form.text_area :related_news, id: :post_related_news %>
+  </div>
+
+  <div class= "col-sm-10">
+    <%= form.label :news_date %>
+    <%= form.date_select :news_date,:start_year => 1945, id: :post_news_date %>
+  </div>
+
+  <div class= "col-sm-10">
+    <%= form.label :yours_thought %>
+    <%= form.text_area :yours_thought, id: :post_yours_thought %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+

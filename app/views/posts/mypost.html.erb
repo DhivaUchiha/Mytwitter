@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default">
+
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+
+<% if user_signed_in? %>
+<%= link_to 'SignOut', destroy_user_session_path, :method => :delete, class: 'btn btn-info' %>
+<% end %>
+
+<% if user_signed_in? %>
+
+<div class="container-fluid">
+<a href="posts/new" class="btn btn-info" role="button">New Post</a>
+</div>
+
+<% end %>
+
+</div>
+</nav>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>Dependent person</th>
+      <th>Related news</th>
+      <th>News date</th>
+      <th>Yours thought</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <% post.user.email%>
+        <td><%= post.country %></td>
+        <td><%= post.dependent_person %></td>
+        <td><%= post.related_news %></td>
+        <td><%= post.news_date %></td>
+        <td><%= post.yours_thought %></td>
+          </tr>
+        <td><%= link_to 'Show', post, class: 'btn btn-info' %> </td>
+        <td><%= link_to 'Edit', edit_post_path(post), class: 'btn btn-info' %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-info'   %></td>
+        
+    <% end %>
+  </tbody>
+</table>
+<table>
+
+<%= link_to 'Back', posts_path, class: 'btn btn-info' %>
